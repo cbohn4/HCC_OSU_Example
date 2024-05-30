@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#SBATCH --job-name=apptainer_osu_test
+#SBATCH --ntasks-per-node=1
+#SBATCH --nodes=2
+#SBATCH --mem-per-cpu=1G
+#SBATCH --time=00:15:00
+#SBATCH --error=osu_latency.apptainer.%J.err
+#SBATCH --output=osu_latency.apptainer.%J.out
+
+module purge
+module load compiler/gcc/11 openmpi/4.1 
+module load apptainer
+
+export OSU_DIR=${PWD}/osu-micro-benchmarks-7.4/osu/libexec/osu-micro-benchmarks/mpi
+
+mpirun -np 2 apptainer run osu_benchmark.sif pt2pt/osu_latency

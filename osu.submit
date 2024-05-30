@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#SBATCH --job-name=
+#SBATCH --job-name=osu_local_test
 #SBATCH --ntasks-per-node=1
 #SBATCH --nodes=2
 #SBATCH --mem-per-cpu=1G
 #SBATCH --time=00:15:00
-#SBATCH --error=osu_latency.%J.err
-#SBATCH --output=osu_latency.%J.out
+#SBATCH --error=osu_latency.local.%J.err
+#SBATCH --output=osu_latency.local.%J.out
 
 module purge
 module load compiler/gcc/11 openmpi/4.1
